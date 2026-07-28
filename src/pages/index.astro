@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Faq from '../components/Faq.astro';
+import Icon from '../components/Icon.astro';
+
+const faqItems = [
+  { q: "L'argent physique est-il un bon investissement ?", a: "L'argent physique est une ressource stable et durable, une alternative accessible à l'or offrant des protections patrimoniales similaires. Contrairement à l'or, l'argent fait peu l'objet de recyclage en raison des coûts élevés, et son usage industriel important (LED, semi-conducteurs, écrans tactiles) peut soutenir la demande sur le long terme." },
+  { q: 'Doit-on signaler un achat ou une vente d\'argent aux autorités ?', a: "L'argent n'est pas assujetti à l'ISF/IFI, donc il n'y a aucune déclaration à faire auprès des impôts quel que soit le montant de la transaction." },
+  { q: 'Peut-on acheter de l\'argent physique à l\'étranger ?', a: "Il est possible d'acheter de l'argent physique à l'étranger, toutefois la fiscalité peut varier d'un pays à l'autre. Au franchissement d'une frontière, des droits de douane peuvent être prélevés selon la valeur transportée." },
+];
+
+const avantages = [
+  { icon: 'shield', title: 'Une valeur refuge accessible', text: "Contrairement à l'or, l'argent reste accessible à un budget plus modeste tout en offrant une protection patrimoniale tangible." },
+  { icon: 'search', title: 'Une rareté croissante', text: "L'argent fait peu l'objet de recyclage du fait des coûts élevés. Son usage industriel (LED, semi-conducteurs, écrans tactiles) consomme durablement une partie du stock mondial." },
+  { icon: 'package', title: 'Pièces ou lingots', text: "Les pièces offrent une meilleure liquidité et fractionnabilité que les lingots, souvent assujettis à la TVA." },
+];
+---
+<BaseLayout
+  title="Acheter de l'argent physique — Godot & Fils depuis 1933"
+  description="Expert français du négoce des métaux précieux depuis 1933. Achetez des pièces et lingots d'argent physique en toute confiance."
+  path="/"
+>
+  <section class="hero section">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="kicker">Depuis 1933 · Expert français des métaux précieux</p>
+        <h1>Achetez de l'<em>argent</em> physique en toute confiance</h1>
+        <p class="lead">Godot & Fils est l'expert français du négoce des métaux précieux et de la numismatique. Pièces et lingots d'argent, conseils d'investissement, stockage sécurisé — un savoir-faire familial depuis 1933.</p>
+        <div class="hero-actions">
+          <a class="btn" href="/guide-achat/">Guide d'achat de l'argent →</a>
+          <a class="btn-outline" href="/agences/">Trouver une agence →</a>
+        </div>
+      </div>
+      <img class="hero-image" src="/images/hero-silver.jpg" alt="Pièces et lingot d'argent" width="600" height="480" loading="eager" />
+    </div>
+  </section>
+
+  <section class="wrap" style="margin-top:-8px">
+    <div class="stat-band">
+      <div class="stat"><div class="v">1933</div><div class="l">Année de fondation</div></div>
+      <div class="stat"><div class="v">200+</div><div class="l">Agences en France</div></div>
+      <div class="stat"><div class="v">999‰</div><div class="l">Titre des pièces les plus pures</div></div>
+      <div class="stat"><div class="v">0800</div><div class="l">Numéro gratuit</div></div>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <h2>Pourquoi acheter de l'argent physique</h2>
+    <div class="steps-row">
+      {avantages.map((a) => (
+        <div class="step">
+          <div class="icon-circle"><Icon name={a.icon} /></div>
+          <div class="step-body">
+            <h4>{a.title}</h4>
+            <p>{a.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="wrap">
+      <h2>Quelles pièces d'argent choisir ?</h2>
+      <p class="lead">Notre sélection couvre des références reconnues internationalement, de la pièce française historique aux frappes modernes les plus pures.</p>
+      <ul class="check-list">
+        <li><strong>5 Francs Semeuse</strong> (1959-1969) — démonétisée, bénéficie du statut fiscal des pièces d'investissement</li>
+        <li><strong>10 et 50 Francs Hercule</strong> — argent fin à 900/1000e</li>
+        <li><strong>Silver Eagle et Maple Leaf</strong> — titre de 999/1000e, parmi les plus pures</li>
+        <li><strong>Philharmonique autrichienne</strong> et <strong>Libertad mexicaine</strong> — alternatives reconnues</li>
+      </ul>
+      <p style="text-align:center;margin-top:18px"><a class="btn" href="/guide-achat/">Consulter le guide d'achat →</a></p>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <h2>La maison Godot & Fils</h2>
+    <p class="lead">Depuis 1933, Godot & Fils est l'expert français du négoce des métaux précieux et de la numismatique, en ligne depuis 2011. Achat, gardiennage et stockage, livraison à domicile, conditionnement sous sachets scellés numérotés.</p>
+    <p style="text-align:center"><a href="/a-propos/">En savoir plus sur notre maison →</a></p>
+  </section>
+
+  <section class="section section-alt">
+    <div class="wrap">
+      <h2>Questions fréquentes</h2>
+      <Faq items={faqItems} />
+      <p style="text-align:center;margin-top:18px"><a href="/faq/">Voir toutes les questions →</a></p>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="card cta-final">
+      <h2>Une question ? Un projet d'achat ?</h2>
+      <p>Nos conseillers vous répondent au 0800 119 119, appel et service gratuits.</p>
+      <a class="btn" href="/contact/">Nous contacter →</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero { padding-top: 50px; padding-bottom: 28px; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 44px; align-items: center; }
+  .kicker { display: inline-block; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 14px; }
+  .hero .lead { font-size: 18px; max-width: 480px; margin: 0 0 24px; }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .hero-image { width: 100%; aspect-ratio: 5/4; object-fit: cover; border-radius: var(--radius); }
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; text-align: center; }
+    .hero .lead { margin: 0 auto 24px; }
+    .hero-actions { justify-content: center; }
+  }
+  .check-list { list-style: none; padding: 0; margin: 16px 0; max-width: 680px; }
+  .check-list li { padding: 10px 0; border-bottom: 1px solid var(--line); color: var(--mut); }
+  .check-list li:last-child { border-bottom: none; }
+  .cta-final { text-align: center; }
+</style>

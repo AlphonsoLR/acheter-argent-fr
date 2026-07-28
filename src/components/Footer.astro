@@ -1,0 +1,56 @@
+---
+const columns = [
+  {
+    title: 'Nous connaître',
+    links: [
+      { href: '/a-propos/', label: 'Qui sommes-nous' },
+      { href: '/guide-achat/', label: "Guide d'achat" },
+      { href: '/faq/', label: 'FAQ' },
+      { href: '/actualites/', label: 'Actualités' },
+    ],
+  },
+  {
+    title: 'Nos services',
+    links: [
+      { href: '/rachat-de-bijoux/', label: 'Rachat de bijoux' },
+      { href: '/agences/', label: 'Nos agences' },
+      { href: '/contact/', label: 'Nous contacter' },
+    ],
+  },
+  {
+    title: 'Légal',
+    links: [
+      { href: '/mentions-legales/', label: 'Mentions légales' },
+      { href: '/politique-de-confidentialite/', label: 'Politique de confidentialité' },
+      { href: '/cgv/', label: 'CGV' },
+    ],
+  },
+];
+---
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    {columns.map((col) => (
+      <div>
+        <h4>{col.title}</h4>
+        <ul>{col.links.map((l) => (<li><a href={l.href}>{l.label}</a></li>))}</ul>
+      </div>
+    ))}
+  </div>
+  <div class="wrap footer-bottom">
+    <p>Godot & Fils — Société par actions simplifiée au capital de 1 000 000 € — RCS Paris 532.350.352 — 26 rue Vivienne, 75002 Paris.</p>
+    <p>Vous cherchez à vendre plutôt qu'à acheter ? Voir <a href="https://acheter-vendre-argent.fr/" rel="noopener">acheter-vendre-argent.fr</a>.</p>
+    <p>&copy; {new Date().getFullYear()} Godot & Fils. Tous droits réservés.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer { border-top: 1px solid var(--line); background: var(--bg-alt); padding: 44px 0 20px; margin-top: 60px; }
+  .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .footer-grid h4 { font-size: 14px; margin-bottom: 12px; }
+  .footer-grid ul { list-style: none; margin: 0; padding: 0; }
+  .footer-grid li { margin: 6px 0; }
+  .footer-grid a { color: var(--mut); font-size: 14px; }
+  .footer-bottom { border-top: 1px solid var(--line); margin-top: 30px; padding-top: 18px; }
+  .footer-bottom p { font-size: 12.5px; margin: 4px 0; }
+  @media (max-width: 780px) { .footer-grid { grid-template-columns: 1fr; } }
+</style>

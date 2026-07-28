@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const chapters = [
+  {
+    n: '01',
+    title: "Qu'est-ce que l'argent physique ?",
+    text: "L'argent métal (symbole Ag) se distingue de l'or par un usage industriel bien plus important : électronique, panneaux solaires, dispositifs médicaux. Cette double nature — métal précieux et matière première industrielle — influence directement son cours, plus volatil que celui de l'or.",
+  },
+  {
+    n: '02',
+    title: 'Pourquoi investir dans l\'argent physique',
+    text: "L'argent fait peu l'objet de recyclage en raison des coûts de récupération élevés au regard de sa valeur unitaire. Une part significative du métal utilisé dans l'industrie n'est jamais récupérée, ce qui réduit structurellement l'offre disponible sur le temps long, dans un contexte de demande industrielle soutenue.",
+  },
+  {
+    n: '03',
+    title: 'Lingots ou pièces en argent ?',
+    text: "Les pièces offrent une meilleure liquidité et une fractionnabilité plus fine que les lingots, ce qui facilite la revente progressive. Les lingots d'argent sont par ailleurs assujettis à la TVA en France, contrairement aux pièces éligibles au régime des monnaies d'investissement — un point déterminant dans le choix entre les deux formats.",
+  },
+  {
+    n: '04',
+    title: 'Comprendre le titre et la pureté',
+    text: "Le titre d'une pièce indique sa proportion de métal pur, exprimée en millièmes. Une pièce à 999/1000e (comme la Silver Eagle ou la Maple Leaf) est quasiment pure ; une pièce historique comme les Francs Hercule est frappée à 900/1000e. Ce titre influence directement la valeur intrinsèque de la pièce, à distinguer de sa éventuelle valeur numismatique de collection.",
+  },
+  {
+    n: '05',
+    title: "Bien choisir son vendeur",
+    text: "Privilégier un professionnel établi, capable de fournir une facture et des garanties de provenance, reste la meilleure protection contre les contrefaçons et les litiges. Conserver les pièces sous scellé et la documentation d'achat facilite également une revente ultérieure dans de bonnes conditions.",
+  },
+  {
+    n: '06',
+    title: 'Fiscalité et conservation',
+    text: "L'argent physique n'est pas assujetti à l'ISF/IFI. Pour les pièces éligibles au régime des monnaies d'investissement, la plus-value bénéficie d'un abattement progressif après plusieurs années de détention. Un stockage sécurisé — coffre personnel ou gardiennage professionnel — protège la valeur de votre investissement dans la durée.",
+  },
+];
+---
+<BaseLayout
+  title="Guide d'achat de l'argent physique | Godot & Fils"
+  description="Guide complet pour bien acheter de l'argent physique : comprendre le métal, choisir entre pièces et lingots, fiscalité et conservation."
+  path="/guide-achat/"
+>
+  <div class="wrap section" style="max-width:860px">
+    <p class="breadcrumb"><a href="/">Accueil</a> / Guide d'achat</p>
+    <h1>Guide d'achat de l'<em>argent physique</em></h1>
+    <p class="lead">Six repères essentiels pour comprendre le marché de l'argent physique et faire un achat éclairé.</p>
+
+    <img class="guide-image" src="/images/silver-coins.jpg" alt="Collection de pièces en argent" width="820" height="380" loading="eager" />
+
+    <div class="chapters">
+      {chapters.map((c) => (
+        <div class="chapter">
+          <div class="n">{c.n}</div>
+          <div class="body">
+            <h3>{c.title}</h3>
+            <p>{c.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="card cta-final" style="margin-top:24px">
+      <h2>Prêt à acheter ?</h2>
+      <p>Nos conseillers vous accompagnent à chaque étape.</p>
+      <a class="btn" href="/contact/">Parler à un conseiller →</a>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .guide-image { width: 100%; aspect-ratio: 21/9; object-fit: cover; border-radius: var(--radius); margin: 24px 0; }
+  .chapters { margin-top: 28px; }
+  .chapter { display: flex; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+  .chapter .n { flex: 0 0 auto; width: 40px; height: 40px; border-radius: 8px; background: var(--panel2); color: var(--accent); font-weight: 800; display: flex; align-items: center; justify-content: center; }
+  .chapter h3 { margin: 0 0 8px; }
+  .chapter p { margin: 0; }
+  .cta-final { text-align: center; }
+</style>

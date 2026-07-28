@@ -1,0 +1,50 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('actualites');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const path = `/actualites/${post.id}/`;
+const formattedDate = post.data.date.toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  datePublished: post.data.date.toISOString(),
+  author: { '@type': 'Organization', name: 'Godot & Fils' },
+};
+---
+<BaseLayout title={`${post.data.title} | Godot & Fils`} description={post.data.excerpt} path={path}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(articleLd)} />
+
+  <div class="wrap section article-wrap">
+    <p class="breadcrumb"><a href="/">Accueil</a> / <a href="/actualites/">Actualités</a> / {post.data.title}</p>
+    <time datetime={post.data.date.toISOString()} class="date">{formattedDate}</time>
+    <h1>{post.data.title}</h1>
+    <article class="article-body">
+      <Content />
+    </article>
+    <div class="card cta-final" style="margin-top:36px">
+      <h2>Une question sur l'achat d'argent ?</h2>
+      <p>Nos conseillers vous répondent au 0800 119 119.</p>
+      <a class="btn" href="/contact/">Nous contacter →</a>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .article-wrap { max-width: 760px; }
+  .date { font-size: 14px; color: var(--mut); }
+  .article-body :global(h2) { margin-top: 30px; }
+  .article-body :global(ul) { color: var(--mut); padding-left: 20px; }
+  .cta-final { text-align: center; }
+</style>

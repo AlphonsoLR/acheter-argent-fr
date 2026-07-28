@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+---
+<BaseLayout
+  title="Nous contacter | Godot & Fils"
+  description="Trois moyens pour nous contacter : téléphone gratuit, rappel par un conseiller, ou message en ligne."
+  path="/contact/"
+>
+  <div class="wrap section" style="max-width:640px">
+    <p class="breadcrumb"><a href="/">Accueil</a> / Contact</p>
+    <h1>Trois moyens pour <em>nous contacter</em></h1>
+
+    <div class="contact-options">
+      <div class="contact-option">
+        <div class="icon-circle"><Icon name="phone" /></div>
+        <div>
+          <h3>Par téléphone</h3>
+          <p>Appelez notre numéro vert : <a href="tel:0800119119">0800 119 119</a> (appel et service gratuits)</p>
+        </div>
+      </div>
+      <div class="contact-option">
+        <div class="icon-circle"><Icon name="map-pin" /></div>
+        <div>
+          <h3>En agence</h3>
+          <p>Rencontrez un conseiller dans l'une de nos <a href="/agences/">agences</a>.</p>
+        </div>
+      </div>
+    </div>
+
+    <form class="card" action="https://formsubmit.co/contact@newp.fr" method="POST">
+      <input type="hidden" name="_honey" style="display:none" />
+
+      <div class="field">
+        <label for="nom">Nom *</label>
+        <input id="nom" type="text" name="nom" required />
+      </div>
+
+      <div class="field">
+        <label for="email">Email *</label>
+        <input id="email" type="email" name="email" required />
+      </div>
+
+      <div class="field">
+        <label for="telephone">Téléphone</label>
+        <input id="telephone" type="tel" name="telephone" />
+      </div>
+
+      <div class="field">
+        <label for="message">Message *</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn" type="submit">Envoyer le message →</button>
+      </div>
+    </form>
+  </div>
+</BaseLayout>
+
+<style>
+  .contact-options { display: flex; flex-direction: column; gap: 22px; margin: 24px 0 32px; }
+  .contact-option { display: flex; gap: 16px; align-items: flex-start; }
+  .contact-option h3 { margin: 0 0 4px; }
+  .contact-option p { margin: 0; }
+  .field { margin: 0 0 16px; }
+  label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 6px; }
+  input, textarea {
+    width: 100%; font: inherit; font-size: 15px; color: var(--ink);
+    background: var(--bg-alt); border: 1px solid var(--line); border-radius: 8px; padding: 11px 13px;
+  }
+  input:focus, textarea:focus { outline: none; border-color: var(--accent); }
+  textarea { resize: vertical; min-height: 110px; }
+</style>
