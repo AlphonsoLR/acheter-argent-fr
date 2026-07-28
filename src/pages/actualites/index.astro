@@ -6,7 +6,7 @@ import { getCollection } from 'astro:content';
 const posts = (await getCollection('actualites')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 <BaseLayout
-  title="Actualités — Cours de l'argent | Godot & Fils"
+  title="Actualités — Cours de l'argent | Acheter Argent"
   description="Analyses de marché et actualités sur l'argent physique et la numismatique."
   path="/actualites/"
 >

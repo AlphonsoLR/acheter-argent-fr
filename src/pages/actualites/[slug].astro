@@ -20,10 +20,10 @@ const articleLd = {
   '@type': 'Article',
   headline: post.data.title,
   datePublished: post.data.date.toISOString(),
-  author: { '@type': 'Organization', name: 'Godot & Fils' },
+  author: { '@type': 'Organization', name: 'Acheter Argent' },
 };
 ---
-<BaseLayout title={`${post.data.title} | Godot & Fils`} description={post.data.excerpt} path={path}>
+<BaseLayout title={`${post.data.title} | Acheter Argent`} description={post.data.excerpt} path={path}>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(articleLd)} />
 
   <div class="wrap section article-wrap">
@@ -35,7 +35,7 @@ const articleLd = {
     </article>
     <div class="card cta-final" style="margin-top:36px">
       <h2>Une question sur l'achat d'argent ?</h2>
-      <p>Nos conseillers vous répondent au 0800 119 119.</p>
+      <p>Écrivez-nous, nous vous répondons rapidement.</p>
       <a class="btn" href="/contact/">Nous contacter →</a>
     </div>
   </div>

@@ -8,7 +8,7 @@ const root = path.resolve(__dirname, '..');
 const SITE = 'https://acheter-argent.fr';
 
 const staticPages = [
-  '/', '/a-propos/', '/guide-achat/', '/rachat-de-bijoux/', '/agences/',
+  '/', '/a-propos/', '/guide-achat/', '/rachat-de-bijoux/',
   '/faq/', '/actualites/', '/contact/', '/mentions-legales/',
   '/politique-de-confidentialite/', '/cgv/',
 ];

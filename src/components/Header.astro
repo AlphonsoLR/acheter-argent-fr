@@ -2,7 +2,6 @@
 const nav = [
   { href: '/', label: 'Accueil' },
   { href: '/guide-achat/', label: "Guide d'achat" },
-  { href: '/agences/', label: 'Nos agences' },
   { href: '/actualites/', label: 'Actualités' },
   { href: '/faq/', label: 'FAQ' },
 ];
@@ -10,14 +9,13 @@ const nav = [
 <header class="site-header">
   <div class="wrap header-inner">
     <a class="logo" href="/">
-      <span class="logo-name">Godot & Fils</span>
-      <span class="logo-year">1933</span>
+      <span class="logo-name">Acheter Argent</span>
+      <span class="logo-year">Métaux précieux</span>
     </a>
     <nav class="main-nav">
       {nav.map((item) => (<a href={item.href}>{item.label}</a>))}
     </nav>
     <div class="header-right">
-      <a class="phone" href="tel:0800119119">0800 119 119</a>
       <a class="btn cta-header" href="/contact/">Nous contacter</a>
     </div>
   </div>
