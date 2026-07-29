@@ -129,9 +129,9 @@ th { background: var(--panel2); font-size: 12.5px; text-transform: uppercase; le
   display: flex; align-items: center; justify-content: space-between;
   padding: 10px 12px 10px 20px;
 }
-.pill-nav .logo { display: flex; align-items: center; gap: 8px; font-family: var(--serif); font-weight: 600; font-size: 18px; color: #fff; white-space: nowrap; }
+.pill-nav .logo { display: flex; align-items: center; white-space: nowrap; }
 .pill-nav .logo:hover { text-decoration: none; }
-.pill-nav .logo .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); flex: 0 0 auto; }
+.pill-nav .logo img { height: 26px; width: auto; display: block; }
 .pill-nav-links { display: flex; gap: 24px; }
 .pill-nav-links a { color: #e7e3da; font-size: 14px; font-weight: 500; }
 .pill-nav-links a:hover { color: var(--accent); text-decoration: none; }
@@ -153,7 +153,7 @@ th { background: var(--panel2); font-size: 12.5px; text-transform: uppercase; le
   .nav-toggle-input:checked ~ .pill-nav-links a:last-child { border-bottom: none; }
 }
 @media (max-width: 420px) {
-  .pill-nav .logo { font-size: 15px; }
+  .pill-nav .logo img { height: 20px; }
   .pill-nav .btn { padding: 9px 14px; font-size: 13px; }
 }
 
