@@ -39,13 +39,15 @@ const chapters = [
   description="Guide complet pour bien acheter de l'argent physique : comprendre le métal, choisir entre pièces et lingots, fiscalité et conservation."
   path="/guide-achat/"
 >
+  <section class="page-hero" style="background-image:url('/images/silver-coins.jpg')">
+    <div class="wrap">
+      <p class="breadcrumb"><a href="/">Accueil</a> / Guide d'achat</p>
+      <h1>Guide d'achat de l'<em>argent physique</em></h1>
+      <p class="lead">Six repères essentiels pour comprendre le marché de l'argent physique et faire un achat éclairé.</p>
+    </div>
+  </section>
+
   <div class="wrap section" style="max-width:860px">
-    <p class="breadcrumb"><a href="/">Accueil</a> / Guide d'achat</p>
-    <h1>Guide d'achat de l'<em>argent physique</em></h1>
-    <p class="lead">Six repères essentiels pour comprendre le marché de l'argent physique et faire un achat éclairé.</p>
-
-    <img class="guide-image" src="/images/silver-coins.jpg" alt="Collection de pièces en argent" width="820" height="380" loading="eager" />
-
     <div class="chapters">
       {chapters.map((c) => (
         <div class="chapter">
@@ -67,7 +69,6 @@ const chapters = [
 </BaseLayout>
 
 <style>
-  .guide-image { width: 100%; aspect-ratio: 21/9; object-fit: cover; border-radius: var(--radius); margin: 24px 0; }
   .chapters { margin-top: 28px; }
   .chapter { display: flex; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--line); }
   .chapter .n { flex: 0 0 auto; width: 40px; height: 40px; border-radius: 8px; background: var(--panel2); color: var(--accent); font-weight: 800; display: flex; align-items: center; justify-content: center; }

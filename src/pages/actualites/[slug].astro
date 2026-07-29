@@ -26,10 +26,15 @@ const articleLd = {
 <BaseLayout title={`${post.data.title} | Acheter Argent`} description={post.data.excerpt} path={path}>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(articleLd)} />
 
+  <section class="page-hero" style="background-image:url('/images/hero-silver.jpg')">
+    <div class="wrap">
+      <p class="breadcrumb"><a href="/">Accueil</a> / <a href="/actualites/">Actualités</a> / {post.data.title}</p>
+      <time datetime={post.data.date.toISOString()} class="date">{formattedDate}</time>
+      <h1>{post.data.title}</h1>
+    </div>
+  </section>
+
   <div class="wrap section article-wrap">
-    <p class="breadcrumb"><a href="/">Accueil</a> / <a href="/actualites/">Actualités</a> / {post.data.title}</p>
-    <time datetime={post.data.date.toISOString()} class="date">{formattedDate}</time>
-    <h1>{post.data.title}</h1>
     <article class="article-body">
       <Content />
     </article>
@@ -44,6 +49,7 @@ const articleLd = {
 <style>
   .article-wrap { max-width: 760px; }
   .date { font-size: 14px; color: var(--mut); }
+  .page-hero .date { color: rgba(255,255,255,.75); display: block; margin-bottom: 6px; }
   .article-body :global(h2) { margin-top: 30px; }
   .article-body :global(ul) { color: var(--mut); padding-left: 20px; }
   .cta-final { text-align: center; }

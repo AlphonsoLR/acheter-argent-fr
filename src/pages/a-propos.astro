@@ -6,16 +6,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   description="Acheter Argent vous accompagne dans l'achat d'argent physique : conseils, guide d'achat, sélection de pièces reconnues."
   path="/a-propos/"
 >
-  <div class="wrap section" style="max-width:960px">
-    <p class="breadcrumb"><a href="/">Accueil</a> / Qui sommes-nous</p>
-    <div class="intro-grid">
-      <div>
-        <h1>À propos d'<em>Acheter Argent</em></h1>
-        <p class="lead">Un site dédié à l'achat d'argent physique : conseils pratiques, guide d'achat et sélection de pièces reconnues internationalement.</p>
-      </div>
-      <img class="intro-image" src="/images/vault.jpg" alt="Chambre forte sécurisée" width="560" height="420" loading="eager" />
+  <section class="page-hero" style="background-image:url('/images/vault.jpg')">
+    <div class="wrap">
+      <p class="breadcrumb"><a href="/">Accueil</a> / Qui sommes-nous</p>
+      <h1>À propos d'<em>Acheter Argent</em></h1>
+      <p class="lead">Un site dédié à l'achat d'argent physique : conseils pratiques, guide d'achat et sélection de pièces reconnues internationalement.</p>
     </div>
+  </section>
 
+  <div class="wrap section" style="max-width:960px">
     <h2>Notre approche</h2>
     <p>Accompagner l'achat de pièces et de lingots d'argent, avec des conseils clairs sur le choix des produits, la fiscalité et la conservation. Notre guide couvre des références reconnues internationalement : pièces historiques françaises, Silver Eagle, Maple Leaf, et bien d'autres.</p>
 
@@ -34,8 +33,3 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </div>
 </BaseLayout>
 
-<style>
-  .intro-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 36px; align-items: center; margin-bottom: 10px; }
-  .intro-image { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius); }
-  @media (max-width: 780px) { .intro-grid { grid-template-columns: 1fr; } }
-</style>

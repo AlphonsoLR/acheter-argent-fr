@@ -10,14 +10,15 @@ const posts = (await getCollection('actualites')).sort((a, b) => b.data.date.val
   description="Analyses de marché et actualités sur l'argent physique et la numismatique."
   path="/actualites/"
 >
-  <div class="banner">
-    <img src="/images/silver-bar.jpg" alt="Lingot et pièces d'argent" loading="eager" />
-  </div>
-  <div class="wrap section">
-    <p class="breadcrumb"><a href="/">Accueil</a> / Actualités</p>
-    <h1>Actualités & <em>analyses de marché</em></h1>
-    <p class="lead">Cours de l'argent, conseils d'investissement et actualités numismatiques.</p>
+  <section class="page-hero" style="background-image:url('/images/silver-bar.jpg')">
+    <div class="wrap">
+      <p class="breadcrumb"><a href="/">Accueil</a> / Actualités</p>
+      <h1>Actualités & <em>analyses de marché</em></h1>
+      <p class="lead">Cours de l'argent, conseils d'investissement et actualités numismatiques.</p>
+    </div>
+  </section>
 
+  <div class="wrap section">
     <div class="divided-list">
       {posts.map((post) => (
         <a class="article-row" href={`/actualites/${post.id}/`}>
@@ -34,8 +35,6 @@ const posts = (await getCollection('actualites')).sort((a, b) => b.data.date.val
 </BaseLayout>
 
 <style>
-  .banner { width: 100%; max-height: 260px; overflow: hidden; }
-  .banner img { width: 100%; height: 260px; object-fit: cover; display: block; }
   .article-row { display: flex; gap: 16px; align-items: flex-start; color: var(--ink); }
   .article-row:hover { text-decoration: none; }
   .article-row:hover h3 { color: var(--accent); }
