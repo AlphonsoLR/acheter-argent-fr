@@ -12,9 +12,15 @@ const nav = [
       <span class="dot"></span>
       Acheter Argent
     </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle-input" />
     <nav class="pill-nav-links">
       {nav.map((item) => (<a href={item.href}>{item.label}</a>))}
     </nav>
-    <a class="btn" href="/contact/">Nous contacter</a>
+    <div class="pill-nav-right">
+      <a class="btn" href="/contact/">Nous contacter</a>
+      <label for="nav-toggle" class="nav-toggle-btn" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </label>
+    </div>
   </header>
 </div>
