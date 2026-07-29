@@ -10,9 +10,23 @@ const faqItems = [
 ];
 
 const avantages = [
-  { icon: 'shield', title: 'Une valeur refuge accessible', text: "Contrairement à l'or, l'argent reste accessible à un budget plus modeste tout en offrant une protection patrimoniale tangible." },
-  { icon: 'search', title: 'Une rareté croissante', text: "L'argent fait peu l'objet de recyclage du fait des coûts élevés. Son usage industriel (LED, semi-conducteurs, écrans tactiles) consomme durablement une partie du stock mondial." },
-  { icon: 'package', title: 'Pièces ou lingots', text: "Les pièces offrent une meilleure liquidité et fractionnabilité que les lingots, souvent assujettis à la TVA." },
+  { icon: 'shield', title: 'Valeur refuge accessible', text: "Un budget plus modeste que l'or pour une protection patrimoniale tangible." },
+  { icon: 'search', title: 'Rareté croissante', text: "Peu recyclé, fortement consommé par l'industrie (LED, semi-conducteurs)." },
+  { icon: 'package', title: 'Pièces ou lingots', text: "Meilleure liquidité pour les pièces, souvent hors TVA à l'achat." },
+  { icon: 'check', title: 'Sans engagement', text: "Conseils et guide d'achat gratuits." },
+];
+
+const categories = [
+  { label: 'Pièces historiques', title: 'Francs Semeuse & Hercule', img: '/images/silver-coins.jpg', href: '/guide-achat/' },
+  { label: 'Pièces modernes', title: 'Silver Eagle & Maple Leaf', img: '/images/hero-silver.jpg', href: '/guide-achat/' },
+  { label: 'Lingots', title: "Format compact, hors TVA", img: '/images/silver-bar.jpg', href: '/guide-achat/' },
+];
+
+const picks = [
+  { title: '5 Francs Semeuse', text: '1959-1969 — démonétisée, statut fiscal des pièces d\'investissement.', img: '/images/silver-coins.jpg' },
+  { title: '10 & 50 Francs Hercule', text: 'Argent fin à 900/1000e.', img: '/images/silver-bar.jpg' },
+  { title: 'Silver Eagle & Maple Leaf', text: 'Titre de 999/1000e, parmi les plus pures.', img: '/images/hero-silver.jpg' },
+  { title: 'Philharmonique & Libertad', text: 'Alternatives autrichienne et mexicaine reconnues.', img: '/images/silver-coins.jpg' },
 ];
 ---
 <BaseLayout
@@ -20,40 +34,36 @@ const avantages = [
   description="Achetez des pièces et lingots d'argent physique en toute confiance : conseils, guide d'achat, sélection de pièces reconnues."
   path="/"
 >
-  <section class="hero section">
-    <div class="wrap hero-grid">
-      <div>
-        <p class="kicker">Métaux précieux · Argent physique</p>
-        <h1>Achetez de l'<em>argent</em> physique en toute confiance</h1>
-        <p class="lead">Pièces et lingots d'argent, conseils d'investissement, guide d'achat — pour investir sereinement dans les métaux précieux.</p>
-        <div class="hero-actions">
-          <a class="btn" href="/guide-achat/">Guide d'achat de l'argent →</a>
-          <a class="btn-outline" href="/contact/">Nous contacter →</a>
-        </div>
+  <section class="hero-photo" style="background-image:url('/images/hero-dark.jpg')">
+    <div class="wrap">
+      <p class="kicker">Métaux précieux · Argent physique</p>
+      <h1>Découvrez l'éclat de l'<em>argent</em> physique</h1>
+      <p class="lead">Pièces et lingots d'argent, conseils d'investissement, guide d'achat — pour investir sereinement dans les métaux précieux.</p>
+      <div class="hero-actions">
+        <a class="btn" href="/guide-achat/">Guide d'achat →</a>
+        <a class="btn-outline" href="/contact/">Nous contacter</a>
       </div>
-      <img class="hero-image" src="/images/hero-silver.jpg" alt="Pièces et lingot d'argent" width="600" height="480" loading="eager" />
     </div>
   </section>
 
-  <section class="wrap" style="margin-top:-8px">
-    <div class="stat-band">
-      <div class="stat"><div class="v">999‰</div><div class="l">Titre des pièces les plus pures</div></div>
-      <div class="stat"><div class="v">6</div><div class="l">Chapitres du guide d'achat</div></div>
-      <div class="stat"><div class="v">0%</div><div class="l">ISF/IFI sur l'argent physique</div></div>
-      <div class="stat"><div class="v">100%</div><div class="l">Envois assurés</div></div>
-    </div>
-  </section>
+  <div class="category-cards">
+    {categories.map((c) => (
+      <a class="category-card" href={c.href}>
+        <div class="ph"><img src={c.img} alt={c.title} loading="eager" /></div>
+        <span class="cat-label">{c.label}</span>
+        <h3>{c.title}</h3>
+        <span class="more">Découvrir →</span>
+      </a>
+    ))}
+  </div>
 
   <section class="section wrap">
-    <h2>Pourquoi acheter de l'argent physique</h2>
-    <div class="steps-row">
+    <div class="icon-feature-row">
       {avantages.map((a) => (
-        <div class="step">
+        <div class="icon-feature">
           <div class="icon-circle"><Icon name={a.icon} /></div>
-          <div class="step-body">
-            <h4>{a.title}</h4>
-            <p>{a.text}</p>
-          </div>
+          <h4>{a.title}</h4>
+          <p>{a.text}</p>
         </div>
       ))}
     </div>
@@ -61,22 +71,32 @@ const avantages = [
 
   <section class="section section-alt">
     <div class="wrap">
-      <h2>Quelles pièces d'argent choisir ?</h2>
-      <p class="lead">Notre sélection couvre des références reconnues internationalement, de la pièce française historique aux frappes modernes les plus pures.</p>
-      <ul class="check-list">
-        <li><strong>5 Francs Semeuse</strong> (1959-1969) — démonétisée, bénéficie du statut fiscal des pièces d'investissement</li>
-        <li><strong>10 et 50 Francs Hercule</strong> — argent fin à 900/1000e</li>
-        <li><strong>Silver Eagle et Maple Leaf</strong> — titre de 999/1000e, parmi les plus pures</li>
-        <li><strong>Philharmonique autrichienne</strong> et <strong>Libertad mexicaine</strong> — alternatives reconnues</li>
-      </ul>
-      <p style="text-align:center;margin-top:18px"><a class="btn" href="/guide-achat/">Consulter le guide d'achat →</a></p>
+      <div class="carousel-head">
+        <div>
+          <h2>Quelles pièces choisir ?</h2>
+          <p class="lead">Des références reconnues internationalement, de la pièce française historique aux frappes modernes les plus pures.</p>
+        </div>
+      </div>
+      <div class="carousel-row">
+        {picks.map((p) => (
+          <div class="c-card">
+            <div class="ph"><img src={p.img} alt={p.title} loading="lazy" /></div>
+            <h4>{p.title}</h4>
+            <p>{p.text}</p>
+          </div>
+        ))}
+      </div>
+      <p style="text-align:center;margin-top:24px"><a class="btn" href="/guide-achat/">Consulter le guide d'achat →</a></p>
     </div>
   </section>
 
-  <section class="section wrap">
-    <h2>Notre approche</h2>
-    <p class="lead">Achat de pièces et de lingots d'argent, conseils personnalisés, conditionnement sous sachets scellés numérotés pour la traçabilité de vos biens.</p>
-    <p style="text-align:center"><a href="/a-propos/">En savoir plus →</a></p>
+  <section class="section wrap split-feature">
+    <div class="ph"><img src="/images/vault.jpg" alt="Chambre forte sécurisée" loading="lazy" /></div>
+    <div>
+      <h2>Notre approche</h2>
+      <p class="lead">Achat de pièces et de lingots d'argent, conseils personnalisés, conditionnement sous sachets scellés numérotés pour la traçabilité de vos biens.</p>
+      <a class="btn-outline" href="/a-propos/">En savoir plus →</a>
+    </div>
   </section>
 
   <section class="section section-alt">
@@ -97,19 +117,5 @@ const avantages = [
 </BaseLayout>
 
 <style>
-  .hero { padding-top: 50px; padding-bottom: 28px; }
-  .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 44px; align-items: center; }
-  .kicker { display: inline-block; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 14px; }
-  .hero .lead { font-size: 18px; max-width: 480px; margin: 0 0 24px; }
-  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-  .hero-image { width: 100%; aspect-ratio: 5/4; object-fit: cover; border-radius: var(--radius); }
-  @media (max-width: 860px) {
-    .hero-grid { grid-template-columns: 1fr; text-align: center; }
-    .hero .lead { margin: 0 auto 24px; }
-    .hero-actions { justify-content: center; }
-  }
-  .check-list { list-style: none; padding: 0; margin: 16px 0; max-width: 680px; }
-  .check-list li { padding: 10px 0; border-bottom: 1px solid var(--line); color: var(--mut); }
-  .check-list li:last-child { border-bottom: none; }
   .cta-final { text-align: center; }
 </style>

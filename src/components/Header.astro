@@ -6,33 +6,15 @@ const nav = [
   { href: '/faq/', label: 'FAQ' },
 ];
 ---
-<header class="site-header">
-  <div class="wrap header-inner">
+<div class="pill-nav-wrap">
+  <header class="pill-nav">
     <a class="logo" href="/">
-      <span class="logo-name">Acheter Argent</span>
-      <span class="logo-year">Métaux précieux</span>
+      <span class="dot"></span>
+      Acheter Argent
     </a>
-    <nav class="main-nav">
+    <nav class="pill-nav-links">
       {nav.map((item) => (<a href={item.href}>{item.label}</a>))}
     </nav>
-    <div class="header-right">
-      <a class="btn cta-header" href="/contact/">Nous contacter</a>
-    </div>
-  </div>
-</header>
-
-<style>
-  .site-header { border-bottom: 1px solid var(--line); background: var(--panel); position: sticky; top: 0; z-index: 20; }
-  .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 14px 22px; }
-  .logo { display: flex; flex-direction: column; align-items: center; line-height: 1.1; }
-  .logo:hover { text-decoration: none; }
-  .logo-name { font-weight: 800; color: var(--ink); font-size: 18px; letter-spacing: .01em; }
-  .logo-year { font-size: 11px; font-weight: 600; color: var(--accent); letter-spacing: .18em; margin-top: 2px; }
-  .main-nav { display: flex; gap: 18px; flex-wrap: wrap; }
-  .main-nav a { color: var(--ink); font-weight: 600; font-size: 13.5px; }
-  .main-nav a:hover { color: var(--accent); text-decoration: none; }
-  .header-right { display: flex; align-items: center; gap: 14px; }
-  .phone { font-weight: 700; color: var(--accent); font-size: 14px; white-space: nowrap; }
-  .cta-header { font-size: 13.5px; padding: 9px 16px; white-space: nowrap; }
-  @media (max-width: 940px) { .main-nav { display: none; } }
-</style>
+    <a class="btn" href="/contact/">Nous contacter</a>
+  </header>
+</div>
