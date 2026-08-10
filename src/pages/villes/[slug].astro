@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Faq from '../../components/Faq.astro';
-import Icon from '../../components/Icon.astro';
 import { villes } from '../../data/villes.js';
 
 export async function getStaticPaths() {
@@ -14,70 +13,89 @@ export async function getStaticPaths() {
 const { ville } = Astro.props;
 const path = `/villes/${ville.slug}/`;
 
-const avantages = [
-  { icon: 'shield', title: 'Valeur refuge accessible', text: "Un budget plus modeste que l'or pour une protection patrimoniale tangible." },
-  { icon: 'search', title: 'Rareté croissante', text: "Peu recyclé, fortement consommé par l'industrie (LED, semi-conducteurs)." },
-  { icon: 'package', title: 'Pièces ou lingots', text: "Meilleure liquidité pour les pièces, souvent hors TVA à l'achat." },
-  { icon: 'check', title: 'Sans engagement', text: "Conseils et guide d'achat gratuits." },
+// Sélection déterministe (hash du slug) d'une variante de formulation par page,
+// pour éviter que les 1000 pages partagent des blocs de texte identiques.
+function variant(slug, count) {
+  let h = 0;
+  for (let i = 0; i < slug.length; i++) h = (h * 31 + slug.charCodeAt(i)) >>> 0;
+  return h % count;
+}
+
+const populationFmt = ville.population.toLocaleString('fr-FR');
+
+const leads = [
+  `Nous n'avons pas de boutique à ${ville.nom} (${populationFmt} habitants) : notre guide d'achat s'applique de la même façon partout en France, y compris dans le département ${ville.departement}.`,
+  `${ville.nom} compte environ ${populationFmt} habitants. Nous n'y avons pas de point de vente physique : les conseils ci-dessous valent pour ${ville.nom} comme pour le reste du département ${ville.departement}.`,
+  `Vous résidez à ${ville.nom} ou dans le département ${ville.departement} ? Nous n'avons pas de boutique sur place, mais notre guide d'achat s'applique intégralement, où que vous soyez en France.`,
+  `Pas d'agence à ${ville.nom} (${populationFmt} habitants, ${ville.departement}) : notre guide d'achat d'argent physique est le même pour tous nos lecteurs, quelle que soit leur ville.`,
 ];
 
-const categories = [
-  { label: 'Pièces historiques', title: 'Francs Semeuse & Hercule', img: '/images/silver-coins.jpg', href: '/guide-achat/' },
-  { label: 'Pièces modernes', title: 'Silver Eagle & Maple Leaf', img: '/images/hero-silver.jpg', href: '/guide-achat/' },
-  { label: 'Lingots', title: 'Format compact, hors TVA', img: '/images/silver-bar.jpg', href: '/guide-achat/' },
+const intros = [
+  `Les principes de base restent identiques depuis ${ville.nom} : privilégier des références reconnues (pièces historiques françaises, Silver Eagle, Maple Leaf, lingots hors TVA), vérifier la pureté annoncée et comparer les primes pratiquées par rapport au cours du jour.`,
+  `Comme ailleurs en ${ville.region}, l'essentiel est de choisir des produits reconnus et de comparer la prime demandée par le vendeur au cours officiel de l'argent, plutôt que le prix affiché seul.`,
+  `Qu'on achète depuis ${ville.nom} ou une autre ville de ${ville.region}, la vigilance porte sur les mêmes points : authenticité, pureté annoncée, et écart entre le prix de vente et le cours du jour.`,
+  `Depuis ${ville.nom}, les mêmes réflexes s'appliquent qu'ailleurs en France : vérifier la réputation du vendeur, la pureté du métal et le niveau de prime par rapport au cours officiel.`,
 ];
+
+const faqPriceAnswers = [
+  `Non. Le cours de l'argent physique suit un marché mondial : il est identique à ${ville.nom} et partout ailleurs en France ou en ${ville.region}. Seule la prime éventuelle du vendeur (frappe, rareté, conditionnement) peut varier.`,
+  `Le cours de l'argent ne dépend pas de la ville : c'est un cours mondial, le même à ${ville.nom} qu'ailleurs. Ce qui peut varier, c'est la prime appliquée par chaque vendeur.`,
+  `Non, le cours est mondial et identique quelle que soit votre ville, y compris ${ville.nom}. Seules les primes pratiquées par les vendeurs peuvent différer.`,
+];
+
+const faqBoutiqueAnswers = [
+  `Non, nous n'avons pas de point de vente physique à ${ville.nom} ni ailleurs. Notre guide et nos conseils s'adressent à tous les acheteurs en France, où qu'ils résident.`,
+  `Non. Nous fonctionnons uniquement comme guide en ligne, sans boutique à ${ville.nom} ni dans aucune autre ville : le contenu est le même pour tous nos lecteurs.`,
+  `Non, il n'existe pas de boutique physique à ${ville.nom}. Notre rôle est de vous aider à choisir et évaluer vos achats, quel que soit votre lieu de résidence.`,
+];
+
+const vIdx = variant(ville.slug, 4);
+const vIdx3 = variant(ville.slug, 3);
 
 const faqItems = [
-  { q: `Le prix de l'argent physique est-il différent à ${ville.nom} ?`, a: `Non. Le cours de l'argent physique suit un marché mondial : il est identique à ${ville.nom} et partout ailleurs en France ou en ${ville.region}. Seule la prime éventuelle du vendeur (frappe, rareté, conditionnement) peut varier.` },
-  { q: `Avez-vous une boutique à ${ville.nom} ?`, a: `Non, nous n'avons pas de point de vente physique à ${ville.nom} ni ailleurs. Notre guide et nos conseils s'adressent à tous les acheteurs en France, où qu'ils résident.` },
-  { q: 'Doit-on signaler un achat d\'argent aux autorités ?', a: "L'argent n'est pas assujetti à l'ISF/IFI, donc il n'y a aucune déclaration à faire auprès des impôts quel que soit le montant de la transaction." },
+  { q: `Le prix de l'argent physique est-il différent à ${ville.nom} ?`, a: faqPriceAnswers[vIdx3] },
+  { q: `Avez-vous une boutique à ${ville.nom} ?`, a: faqBoutiqueAnswers[vIdx3] },
 ];
 ---
 <BaseLayout
   title={`Acheter de l'argent physique à ${ville.nom} — Guide et conseils | Acheter Argent`}
-  description={`Guide pour acheter des pièces et lingots d'argent physique depuis ${ville.nom} (${ville.departement}) : critères de choix, fiscalité, sélection de références reconnues.`}
+  description={`Guide pour acheter des pièces et lingots d'argent physique depuis ${ville.nom} (${ville.departement}, ${populationFmt} habitants) : critères de choix, fiscalité, sélection de références reconnues.`}
   path={path}
 >
   <section class="page-hero-plain">
     <div class="wrap">
       <p class="breadcrumb"><a href="/">Accueil</a> / <a href="/villes/">Villes</a> / {ville.nom}</p>
       <h1>Acheter de l'argent physique à <em>{ville.nom}</em></h1>
-      <p class="lead">Nous n'avons pas de boutique à {ville.nom} : notre guide d'achat et nos conseils s'appliquent de la même façon partout en France, y compris à {ville.nom} et dans le département {ville.departement} ({ville.region}).</p>
+      <p class="lead">{leads[vIdx]}</p>
     </div>
   </section>
 
-  <div class="wrap section" style="max-width:860px">
+  <div class="wrap section" style="max-width:760px">
+    <table class="ville-infos">
+      <tbody>
+        <tr><th>Département</th><td>{ville.departement}</td></tr>
+        <tr><th>Région</th><td>{ville.region}</td></tr>
+        <tr><th>Population</th><td>{populationFmt} habitants</td></tr>
+        <tr><th>Code postal</th><td>{ville.codePostal}</td></tr>
+      </tbody>
+    </table>
+
     <h2>Acheter de l'argent physique depuis {ville.nom}</h2>
-    <p>Que vous résidiez à {ville.nom} ou ailleurs en France, les mêmes principes s'appliquent pour bien acheter de l'argent physique : privilégier des références reconnues (pièces historiques françaises, Silver Eagle, Maple Leaf, lingots hors TVA), vérifier la pureté annoncée et comparer les primes pratiquées par rapport au cours du jour.</p>
-
-    <div class="icon-feature-row" style="margin:28px 0">
-      {avantages.map((a) => (
-        <div class="icon-feature">
-          <div class="icon-circle"><Icon name={a.icon} /></div>
-          <h4>{a.title}</h4>
-          <p>{a.text}</p>
-        </div>
-      ))}
-    </div>
-
-    <h2>Quelles pièces ou lingots choisir ?</h2>
-    <div class="category-cards" style="margin:0 0 8px;position:static">
-      {categories.map((c) => (
-        <a class="category-card" href={c.href}>
-          <div class="ph"><img src={c.img} alt={c.title} loading="lazy" /></div>
-          <span class="cat-label">{c.label}</span>
-          <h3>{c.title}</h3>
-          <span class="more">Découvrir →</span>
-        </a>
-      ))}
-    </div>
+    <p>{intros[vIdx]}</p>
+    <p>Le détail des critères de choix, de la fiscalité et de la sélection de références reconnues est disponible dans notre <a href="/guide-achat/">guide d'achat complet</a>.</p>
 
     <h2>Questions fréquentes</h2>
     <Faq items={faqItems} />
+    <p style="text-align:center;margin-top:14px"><a href="/faq/">Voir toutes les questions →</a></p>
 
     <div class="card" style="text-align:center;margin-top:28px">
-      <p style="margin-bottom:14px">Consultez notre <a href="/guide-achat/">guide d'achat complet</a> ou <a href="/contact/">contactez-nous</a> pour toute question. Retrouvez <a href="/villes/">toutes les villes</a> couvertes par ce guide.</p>
+      <p style="margin-bottom:14px">Retrouvez <a href="/villes/">toutes les villes</a> couvertes par ce guide, ou <a href="/contact/">contactez-nous</a> pour toute question.</p>
       <a class="btn" href="/guide-achat/">Guide d'achat →</a>
     </div>
   </div>
 </BaseLayout>
+
+<style>
+  .ville-infos { margin: 20px 0 32px; }
+  .ville-infos th { width: 40%; font-weight: 600; color: var(--ink); background: var(--panel2); }
+</style>
