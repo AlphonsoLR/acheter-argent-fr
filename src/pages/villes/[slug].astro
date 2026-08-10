@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Faq from '../../components/Faq.astro';
+import Icon from '../../components/Icon.astro';
+import { villes } from '../../data/villes.js';
+
+export async function getStaticPaths() {
+  return villes.map((v) => ({
+    params: { slug: v.slug },
+    props: { ville: v },
+  }));
+}
+
+const { ville } = Astro.props;
+const path = `/villes/${ville.slug}/`;
+
+const avantages = [
+  { icon: 'shield', title: 'Valeur refuge accessible', text: "Un budget plus modeste que l'or pour une protection patrimoniale tangible." },
+  { icon: 'search', title: 'Rareté croissante', text: "Peu recyclé, fortement consommé par l'industrie (LED, semi-conducteurs)." },
+  { icon: 'package', title: 'Pièces ou lingots', text: "Meilleure liquidité pour les pièces, souvent hors TVA à l'achat." },
+  { icon: 'check', title: 'Sans engagement', text: "Conseils et guide d'achat gratuits." },
+];
+
+const categories = [
+  { label: 'Pièces historiques', title: 'Francs Semeuse & Hercule', img: '/images/silver-coins.jpg', href: '/guide-achat/' },
+  { label: 'Pièces modernes', title: 'Silver Eagle & Maple Leaf', img: '/images/hero-silver.jpg', href: '/guide-achat/' },
+  { label: 'Lingots', title: 'Format compact, hors TVA', img: '/images/silver-bar.jpg', href: '/guide-achat/' },
+];
+
+const faqItems = [
+  { q: `Le prix de l'argent physique est-il différent à ${ville.nom} ?`, a: `Non. Le cours de l'argent physique suit un marché mondial : il est identique à ${ville.nom} et partout ailleurs en France ou en ${ville.region}. Seule la prime éventuelle du vendeur (frappe, rareté, conditionnement) peut varier.` },
+  { q: `Avez-vous une boutique à ${ville.nom} ?`, a: `Non, nous n'avons pas de point de vente physique à ${ville.nom} ni ailleurs. Notre guide et nos conseils s'adressent à tous les acheteurs en France, où qu'ils résident.` },
+  { q: 'Doit-on signaler un achat d\'argent aux autorités ?', a: "L'argent n'est pas assujetti à l'ISF/IFI, donc il n'y a aucune déclaration à faire auprès des impôts quel que soit le montant de la transaction." },
+];
+---
+<BaseLayout
+  title={`Acheter de l'argent physique à ${ville.nom} — Guide et conseils | Acheter Argent`}
+  description={`Guide pour acheter des pièces et lingots d'argent physique depuis ${ville.nom} (${ville.departement}) : critères de choix, fiscalité, sélection de références reconnues.`}
+  path={path}
+>
+  <section class="page-hero-plain">
+    <div class="wrap">
+      <p class="breadcrumb"><a href="/">Accueil</a> / <a href="/villes/">Villes</a> / {ville.nom}</p>
+      <h1>Acheter de l'argent physique à <em>{ville.nom}</em></h1>
+      <p class="lead">Nous n'avons pas de boutique à {ville.nom} : notre guide d'achat et nos conseils s'appliquent de la même façon partout en France, y compris à {ville.nom} et dans le département {ville.departement} ({ville.region}).</p>
+    </div>
+  </section>
+
+  <div class="wrap section" style="max-width:860px">
+    <h2>Acheter de l'argent physique depuis {ville.nom}</h2>
+    <p>Que vous résidiez à {ville.nom} ou ailleurs en France, les mêmes principes s'appliquent pour bien acheter de l'argent physique : privilégier des références reconnues (pièces historiques françaises, Silver Eagle, Maple Leaf, lingots hors TVA), vérifier la pureté annoncée et comparer les primes pratiquées par rapport au cours du jour.</p>
+
+    <div class="icon-feature-row" style="margin:28px 0">
+      {avantages.map((a) => (
+        <div class="icon-feature">
+          <div class="icon-circle"><Icon name={a.icon} /></div>
+          <h4>{a.title}</h4>
+          <p>{a.text}</p>
+        </div>
+      ))}
+    </div>
+
+    <h2>Quelles pièces ou lingots choisir ?</h2>
+    <div class="category-cards" style="margin:0 0 8px;position:static">
+      {categories.map((c) => (
+        <a class="category-card" href={c.href}>
+          <div class="ph"><img src={c.img} alt={c.title} loading="lazy" /></div>
+          <span class="cat-label">{c.label}</span>
+          <h3>{c.title}</h3>
+          <span class="more">Découvrir →</span>
+        </a>
+      ))}
+    </div>
+
+    <h2>Questions fréquentes</h2>
+    <Faq items={faqItems} />
+
+    <div class="card" style="text-align:center;margin-top:28px">
+      <p style="margin-bottom:14px">Consultez notre <a href="/guide-achat/">guide d'achat complet</a> ou <a href="/contact/">contactez-nous</a> pour toute question. Retrouvez <a href="/villes/">toutes les villes</a> couvertes par ce guide.</p>
+      <a class="btn" href="/guide-achat/">Guide d'achat →</a>
+    </div>
+  </div>
+</BaseLayout>

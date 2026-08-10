@@ -2,6 +2,7 @@
 import { writeFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { villes } from '../src/data/villes.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
@@ -10,10 +11,12 @@ const SITE = 'https://acheter-argent.fr';
 const staticPages = [
   '/', '/a-propos/', '/guide-achat/', '/rachat-de-bijoux/',
   '/faq/', '/actualites/', '/contact/', '/mentions-legales/',
-  '/politique-de-confidentialite/', '/cgv/',
+  '/politique-de-confidentialite/', '/cgv/', '/villes/',
 ];
 
 const urls = new Set(staticPages);
+
+for (const v of villes) urls.add(`/villes/${v.slug}/`);
 
 const newsDir = path.join(root, 'src', 'content', 'actualites');
 try {

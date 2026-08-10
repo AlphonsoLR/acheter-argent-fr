@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { villes } from '../../data/villes.js';
+
+const byRegion = new Map();
+for (const v of [...villes].sort((a, b) => a.nom.localeCompare(b.nom, 'fr'))) {
+  if (!byRegion.has(v.region)) byRegion.set(v.region, []);
+  byRegion.get(v.region).push(v);
+}
+const regions = [...byRegion.entries()].sort((a, b) => a[0].localeCompare(b[0], 'fr'));
+---
+<BaseLayout
+  title="Acheter de l'argent physique partout en France | Acheter Argent"
+  description="Notre guide d'achat d'argent physique s'applique de la même façon dans toute la France. Retrouvez les informations classées par région et par ville."
+  path="/villes/"
+>
+  <section class="page-hero-plain">
+    <div class="wrap">
+      <p class="breadcrumb"><a href="/">Accueil</a> / Villes</p>
+      <h1>Notre guide, partout en <em>France</em></h1>
+      <p class="lead">Nous n'avons pas de boutique physique : notre guide d'achat s'applique de la même façon quelle que soit votre ville de résidence. Retrouvez les informations classées par région.</p>
+    </div>
+  </section>
+
+  <div class="wrap section" style="max-width:1040px">
+    {regions.map(([region, list]) => (
+      <div class="region-block">
+        <h2>{region}</h2>
+        <div class="city-list">
+          {list.map((v) => (<a href={`/villes/${v.slug}/`}>{v.nom}</a>))}
+        </div>
+      </div>
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  .region-block { margin: 0 0 36px; }
+  .region-block h2 { margin-top: 0; margin-bottom: 14px; font-size: 20px; }
+  .city-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px 16px; }
+  .city-list a { font-size: 14px; padding: 4px 0; color: var(--mut); }
+  .city-list a:hover { color: var(--accent); }
+  @media (max-width: 780px) { .city-list { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 440px) { .city-list { grid-template-columns: 1fr; } }
+</style>
