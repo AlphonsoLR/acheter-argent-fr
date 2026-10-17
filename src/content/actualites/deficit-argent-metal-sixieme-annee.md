@@ -15,6 +15,8 @@ Ce déficit anticipé pour 2026 n'est pas un simple accident de marché : il pro
 
 L'argent est rarement extrait seul : une grande partie de la production provient de mines exploitant d'autres métaux, comme le cuivre, le plomb ou le zinc. Cette caractéristique rend l'offre peu réactive — même lorsque les prix augmentent, la production ne peut pas s'ajuster rapidement.
 
+Ce mécanisme est détaillé, en anglais, dans une <a href="https://silverandgoldcoinblog.com/2026/10/15/silver-supply-and-by-product-mining/" target="_blank" rel="noopener">analyse de l'offre minière d'argent</a> qui distingue les mines d'argent primaires des exploitations où le métal n'est qu'un coproduit, et explique pourquoi une hausse des cours ne relance pas mécaniquement l'extraction.
+
 ## Une demande tirée par l'industrie et l'investissement
 
 L'argent présente un profil rare : à la fois métal précieux et métal industriel, utilisé dans les panneaux solaires, l'électronique, les véhicules électriques, l'équipement médical et de nombreux composants industriels. La demande d'investissement en pièces et lingots reste dynamique, avec une progression estimée à 18 % en 2026, compensant en partie le ralentissement de certains usages industriels.
